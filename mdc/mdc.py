@@ -1,4 +1,6 @@
 
+import sieve_eratosthenes2
+
 numbers = []
 while True:
 	number = int(input())
@@ -6,6 +8,11 @@ while True:
 		break
 	else:
 		numbers.append(number)
+
+
+primes = sieve_eratosthenes2.sieve(max(numbers))
+print(primes)
+
 
 
 multiples = []
