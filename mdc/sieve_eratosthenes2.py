@@ -26,8 +26,14 @@ def sieve(num):
 	return smallers	
 
 
-def primes(smallers):
-	t = len(smallers)
-	print(t)
+def prime(smallers):
+	primes = []
+	
+	for i in range(len(smallers)):
+		if (smallers[i] == True):
+			primes.append(i+1) #append prime
+	
+	return primes
 
-primes(sieve(12))
+
+#print(prime(sieve(20)))

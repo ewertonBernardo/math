@@ -2,6 +2,7 @@
 import sieve_eratosthenes2
 
 numbers = []
+print("Enter the numbers (zero to calculate):")
 while True:
 	number = int(input())
 	if number == 0:
@@ -10,23 +11,38 @@ while True:
 		numbers.append(number)
 
 
-primes = sieve_eratosthenes2.sieve(max(numbers))
-print(primes)
+bool_primes = sieve_eratosthenes2.sieve(max(numbers))
+#print(bool_primes)
+
+primes = sieve_eratosthenes2.prime(bool_primes)
+#print(primes)
+
+factors = []
+
+for p in primes:
+
+	divide = True
+	while divide: #for each number check (with sum) if it is divisible by the same prime
+		
+		cont_n = 0 #adder
+		for i in range(len(numbers)):
+
+			if(numbers[i]%p == 0 and numbers[i]!=1): 
+				numbers[i] = numbers[i]/p #update value divided
+				cont_n += 1
 
 
-
-multiples = []
-
-if(numbers[0]%2 == 0 and numbers[0]!=1):
-	numbers[0] = numbers[0]/2
-	multiples.append(2)
-if(numbers[0]%3 == 0 and numbers[0]!=1):
-	numbers[0] = numbers[0]/3
-	multiples.append(3)
-if(numbers[0]%5 == 0 and numbers[0]!=1):
-	numbers[0] = numbers[0]/5
-	multiples.append(5)
+		if(cont_n == len(numbers)): #if all are divisible by the prime
+			factors.append(p)
+		else:
+			divide = False
 
 
-for m in multiples:
-	print(m)
+print("factors:")
+print(factors)
+
+mdc = 1
+for f in factors:
+	mdc *= f
+
+print(f"MDC:{mdc}")
